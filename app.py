@@ -38,6 +38,7 @@ def delete_todo(sno):
     return redirect("/")
 
 
+
 @app.route('/update/<int:sno>',methods=['GET','POST'])
 def update_todo(sno):
     if request.method=='POST':
