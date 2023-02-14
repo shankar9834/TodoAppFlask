@@ -67,7 +67,7 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </fieldset>
       </form>
-
+      <h2>Tasks To Be Done</h2>
       <table class="table">
         <thead>
           <tr>
@@ -79,21 +79,93 @@
           </tr>
         </thead>
         <tbody>
+          
           {% for todo in alltodos %}
+         
+          {% if todo.isDone==False %}
           <tr>
-            <th scope="row">{{loop.index}}</th>
-            <td>{{todo.title}}</td>
-            <td>{{todo.desc}}</td>
-            <td>{{todo.date_created}}</td>
-            <td>
+          <th scope="row">
              
-              <a href="/update/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">update</a>
-              <a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">delete</a>
+           
+            <a href="/doneTask/{{todo.sno}}">
+              <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          
+            <label class="form-check-label" for="flexCheckDefault">
+            {{loop.index}}
+            </label>
+          </div>
+          </a>
+         
+            
+          </th>
+          <td>{{todo.title}}</td>
+          <td>{{todo.desc}}</td>
+          <td>{{todo.date_created}}</td>
+          <td>
+           
+            <a href="/update/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">update</a>
+            <a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">delete</a>
 
-            </td>
+          </td>
 
-          </tr>
+        </tr>
+          {% endif %}
+         
           {% endfor %}
+
+         
+         
+        </tbody>
+      </table>
+      <br/>
+  <h2>Tasks Done</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Title</th>
+            <th scope="col">Desc</th>
+            <th scope="col">Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {% for todo in alltodos %}
+         
+          {% if todo.isDone==True %}
+          <tr>
+          <th scope="row">
+             
+            <a href="/doneTask/{{todo.sno}}">
+              <div class="form-check">
+           
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+          
+            <label class="form-check-label" for="flexCheckDefault">
+            {{loop.index}}
+            </label>
+          </div>
+          </a>
+         
+            
+          </th>
+          <td>{{todo.title}}</td>
+          <td>{{todo.desc}}</td>
+          <td>{{todo.date_created}}</td>
+          <td>
+           
+            <a href="/update/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">update</a>
+            <a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">delete</a>
+
+          </td>
+
+        </tr>
+          {% endif %}
+         
+          {% endfor %}
+
          
          
         </tbody>

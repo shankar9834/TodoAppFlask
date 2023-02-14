@@ -11,6 +11,8 @@ class Todo(db.Model):
     sno =db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String, nullable=False)
     desc=db.Column(db.String(200),nullable=False)
+    isDone=db.Column(db.Boolean,default=False,nullable=False)
+    
     date_created=db.Column(db.DateTime, default=datetime.utcnow)
     
     
@@ -50,8 +52,16 @@ def update_todo(sno):
     
     todo=Todo.query.filter_by(sno=sno).first()
     return render_template("update.html",todo=todo)
+
     
-    
+@app.route('/doneTask/<int:sno>')
+def doneTask(sno):
+    todo=Todo.query.filter_by(sno=sno).first()
+    todo.isDone=not todo.isDone
+    db.session.add(todo)
+    db.session.commit()
+    return redirect("/")
+       
 
 
 
