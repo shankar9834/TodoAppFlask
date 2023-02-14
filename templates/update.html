@@ -5,15 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>TO_DO_APP</title>
+    <title>update</title>
 </head>
-<style>
- *{
-    margin-left: 0px;
-    
-    padding: 0px;
- }   
-</style>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -49,60 +42,27 @@
           </div>
         </div>
       </nav>
+      <div class="container">
 
-  <div class="container">
-    <form action="/" method="POST">
-        <fieldset >
-          <legend>Add Tasks to To Do List</legend>
-          <div class="mb-3">
-            <label for="task" class="form-label">Title</label>
-            <input type="text" id="task" name="title" class="form-control" placeholder="Task">
-          </div>
-          <div class="mb-3">
-            <label for="TextInput" class="form-label">Desc</label>
-            <input type="text" id="TextInput" name="desc" class="form-control" placeholder="Desc">
-          </div>
-       
-        
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </fieldset>
-      </form>
+        <form action="/update/{{todo.sno}}" method="POST">
+            <fieldset >
+              <legend>Add Tasks to To Do List</legend>
+              <div class="mb-3">
+                <label for="task" class="form-label">Title</label>
+                <input type="text" id="task" name="title" value="{{todo.title}}" class="form-control" placeholder="Task">
+              </div>
+              <div class="mb-3">
+                <label for="TextInput" class="form-label">Desc</label>
+                <input type="text" id="TextInput" name="desc" value="{{todo.desc}}" class="form-control" placeholder="Desc">
+              </div>
+           
+            
+              <button type="submit" class="btn btn-primary">Update</button>
+            </fieldset>
+          </form>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Sno</th>
-            <th scope="col">Title</th>
-            <th scope="col">Desc</th>
-            <th scope="col">Date</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for todo in alltodos %}
-          <tr>
-            <th scope="row">{{loop.index}}</th>
-            <td>{{todo.title}}</td>
-            <td>{{todo.desc}}</td>
-            <td>{{todo.date_created}}</td>
-            <td>
-             
-              <a href="/update/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">update</a>
-              <a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark btn-sm">delete</a>
-
-            </td>
-
-          </tr>
-          {% endfor %}
-         
-         
-        </tbody>
-      </table>
-  </div>
-      
-
+      </div>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </body>
 </html>
-
